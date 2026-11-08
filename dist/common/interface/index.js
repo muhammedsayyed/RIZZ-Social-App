@@ -19,3 +19,5 @@ __exportStar(require("./response.interface"), exports);
 __exportStar(require("./user.interface"), exports);
 __exportStar(require("./paginate.interface"), exports);
 __exportStar(require("./authetication.interface"), exports);
+__exportStar(require("./post.interface"), exports);
+__exportStar(require("./comment.interface"), exports);

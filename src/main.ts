@@ -1,10 +1,9 @@
 import express from 'express'
 import cors from "cors"
-import { authenticationController } from './modules'
+import { authenticationController, userController, postController, commentController } from './modules'
 import { globalErrorHandling } from './middleware'
 import { PORT } from './config'
 import { bootstrapDB } from './DB/connection.db'
-import { userController } from './modules/user'
 const app: express.Application = express();
 
 app.use(cors(),express.json())
@@ -17,6 +16,9 @@ app.all("/", async (req: express.Request, res: express.Response, next: express.N
 
 app.use('/auth', authenticationController)
 app.use('/user', userController)
+app.use('/post', postController)
+app.use('/comment', commentController)
 app.use(globalErrorHandling)
+
 
 
