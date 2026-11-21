@@ -1,40 +1,49 @@
-import mongoose from "mongoose";
+import mongoose, { HydratedDocument } from "mongoose";
 import { INotification } from "../../common/interface";
-import { NotificationTypeEnum } from "../../common/enum";
 
 const notificationSchema = new mongoose.Schema<INotification>(
     {
-        recipientId: {
+        recipient_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true,
         },
-        senderId: {
+        sender_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true,
         },
         type: {
-            type: Number,
-            enum: NotificationTypeEnum,
+            type: String,
             required: true,
         },
-        targetId: {
+        target_id: {
             type: mongoose.Schema.Types.ObjectId,
-            required: true,
+            required: false,
         },
-        isRead: {
+        is_read: {
             type: Boolean,
             default: false,
         },
+        created_at: {
+            type: Date,
+            default: Date.now,
+        },
     },
     {
-        timestamps: true,
         strict: true,
         strictQuery: true,
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true },
     }
 );
+
+notificationSchema.virtual("notification_id").get(function () {
+    return this._id;
+});
 
 export const NotificationModel =
     mongoose.models.Notification ||
     mongoose.model<INotification>("Notification", notificationSchema);
+
+export type HNotification = HydratedDocument<INotification>;

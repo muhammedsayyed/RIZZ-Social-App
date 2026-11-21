@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import { NotificationTypeEnum } from "../enum";
 
 export interface INotification {
     _id?: mongoose.Types.ObjectId;
-    recipientId: mongoose.Types.ObjectId;
-    senderId: mongoose.Types.ObjectId;
-    type: NotificationTypeEnum;
-    targetId: mongoose.Types.ObjectId;
-    isRead: boolean;
-    createdAt?: Date;
+    notification_id?: mongoose.Types.ObjectId;
+    recipient_id: mongoose.Types.ObjectId;
+    sender_id: mongoose.Types.ObjectId;
+    type: string;
+    target_id?: mongoose.Types.ObjectId;
+    is_read: boolean;
+    created_at?: Date;
 }
