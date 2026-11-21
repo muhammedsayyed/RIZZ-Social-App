@@ -21,3 +21,4 @@ __exportStar(require("./paginate.interface"), exports);
 __exportStar(require("./authetication.interface"), exports);
 __exportStar(require("./post.interface"), exports);
 __exportStar(require("./comment.interface"), exports);
+__exportStar(require("./notification.interface"), exports);
